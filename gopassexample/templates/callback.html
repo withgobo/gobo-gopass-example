@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="text-center">
+        {% if "code" in request.GET %}
+        Authorization code: <code>{{ request.GET.code }}</code>
+        {% elif "error" in request.GET %}
+            <p>Error: {{ request.GET.error }}</p>
+            {% if "error_description" in request.GET %}
+            <p>{{ request.GET.error_description }}</p>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -4,9 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+cryptography = "*"
 django = "*"
+django-widget-tweaks = "*"
+pyjwt = "*"
+requests = "*"
+python-decouple = "*"
 
 [dev-packages]
+django-livereload-server = "*"
+pytest = "*"
+shopify-multipass = { editable = true, ref = "ed29269b6b262a81bbe8a1ca73455432fa23d352", git = "https://github.com/hawflakes/shopify-multipass.git" }
 
 [requires]
 python_version = "3.9"

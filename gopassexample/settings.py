@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 from pathlib import Path
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,7 +25,7 @@ SECRET_KEY = "django-insecure-lBHwPmzrCROhwtOkOsAozinnfyhMcZBxFkauQloRfiRvhxBpwN
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -31,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "widget_tweaks",
     "gopassexample",
 ]
 
@@ -83,3 +86,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = "static/"
+
+
+# Livereload Server
+
+if DEBUG:
+    INSTALLED_APPS += ["livereload"]
+    MIDDLEWARE += ["livereload.middleware.LiveReloadScript"]
+
+
+# Gobo
+
+GOBO_CLIENT_ID = config("GOBO_CLIENT_ID")
+GOBO_CLIENT_SECRET = config("GOBO_CLIENT_SECRET")
+GOBO_DOMAIN = config("GOBO_DOMAIN")
+
+APP_CLIENT_ID = config("APP_CLIENT_ID")
+APP_CLIENT_SECRET = config("APP_CLIENT_SECRET")

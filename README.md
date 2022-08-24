@@ -10,4 +10,5 @@ $ pipenv install --dev
 
 ```bash
 $ pipenv run python manage.py runserver [PORT]
+$ pipenv run python manage.py livereload [--port PORT]
 ```

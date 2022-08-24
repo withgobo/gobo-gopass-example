@@ -1,11 +1,40 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <title>GoPass Example</title>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <h1>Welcome to Gobo GoPass Example!</h1>
-        {{ request.session.test }}
-    </body>
-</html>
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block main %}
+{% with LABEL_CLASSES="block font-medium text-gray-700 text-sm" %}
+{% with INPUT_CLASSES="appearance-none bg-gray-50 block border border-gray-300 mt-1 placeholder-gray-400 px-3 py-2 rounded-md shadow-sm w-full focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %}
+<form method="POST">
+    <div class="space-y-6">
+        {% if form.non_field_errors %}
+        <ul class="bg-red-50 p-4 rounded-md space-y-1 text-sm text-yellow-700">
+            {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% for field in form %}
+        <div>
+            {{ field|add_label_class:LABEL_CLASSES }}
+            {% render_field field class=INPUT_CLASSES %}
+        </div>
+        {% if field.errors %}
+        <ul class="mt-2 space-y-1">
+            {% for error in field.errors %}
+            <li class="text-sm text-red-600">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% csrf_token %}
+    <input
+        class="w-full mt-8 flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        type="submit"
+        value="Submit"
+    >
+</form>
+{% endwith %}
+{% endwith %}
+{% endblock %}
