@@ -1,14 +1,24 @@
 # Gobo GoPass Example
 
-## Quick Start
+## Dependencies
+
+-   Node.js v20
+
+## Installation
 
 ```bash
-$ pipenv install --dev
+$ cp .env.example .env
+$ npm install
+```
+
+## Run the App
+
+```bash
+$ npm start
 ```
 
 ## Local Development
 
 ```bash
-$ pipenv run python manage.py runserver [PORT]
-$ pipenv run python manage.py livereload [--port PORT]
+$ npm run dev
 ```

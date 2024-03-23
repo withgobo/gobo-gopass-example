@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env app.js",
+    "dev": "nodemon -e js,html --env-file=.env app.js"
+  },
+  "dependencies": {
+    "express": "^4",
+    "http-errors": "^2",
+    "jsonwebtoken": "^9",
+    "morgan": "^1",
+    "nocache": "^4",
+    "nunjucks": "^3"
+  },
+  "devDependencies": {
+    "nodemon": "^3"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
