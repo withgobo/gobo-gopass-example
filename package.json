@@ -1,6 +1,7 @@
 {
-  "private": true,
+  "name": "gobo-gopass-example",
   "type": "module",
+  "private": true,
   "scripts": {
     "start": "node --env-file=.env app.js",
     "dev": "nodemon -e js,html --env-file=.env app.js"

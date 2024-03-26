@@ -1,11 +1,10 @@
 import express from "express";
 import morgan from "morgan";
-import nocache from "nocache";
 import nunjucks from "nunjucks";
 
 import { errorHandler, notFoundHandler } from "./lib/error.js";
-import { gopassView } from "./views/gopass.js";
-import { indexView } from "./views/index.js";
+import gopassRouter from "./routes/gopass.js";
+import indexRouter from "./routes/index.js";
 
 const app = express();
 const port = process.env.PORT || 8300;
@@ -20,8 +19,8 @@ nunjucks.configure("templates", {
 app.use(morgan("dev"));
 
 // routes
-app.get("/", indexView);
-app.get("/gopass", nocache(), gopassView);
+app.use("/", indexRouter);
+app.use("/gopass", gopassRouter);
 
 // error pages
 app.use(notFoundHandler);

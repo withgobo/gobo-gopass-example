@@ -1,6 +1,10 @@
+import express from "express";
 import createError from "http-errors";
 import jsonwebtoken from "jsonwebtoken";
+import nocache from "nocache";
 import { URL } from "node:url";
+
+const router = express.Router();
 
 // User/org being logged into your Gobo marketplace. We're hardcoding
 // the values here, but this would typically be from a database lookup.
@@ -14,7 +18,7 @@ const USER_INFO = {
   role: "admin",
 };
 
-export function gopassView(req, res, next) {
+router.get("/", nocache(), (req, res, next) => {
   // Make sure the required environment variables are set.
   if (!process.env.GOPASS_KEY || !process.env.GOPASS_URL) {
     return res.status(500).render("error.html", {
@@ -44,4 +48,6 @@ export function gopassView(req, res, next) {
   // Redirect the user to the GoPass login URL.
   console.log(`Redirecting to: ${url.href}`);
   return res.redirect(url);
-}
+});
+
+export default router;
