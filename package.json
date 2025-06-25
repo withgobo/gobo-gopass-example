@@ -3,8 +3,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "node --env-file=.env app.js",
-    "dev": "nodemon -e js,html --env-file=.env app.js"
+    "start": "node --env-file-if-exists=.env app.js",
+    "dev": "nodemon -e js,html --env-file-if-exists=.env app.js"
   },
   "dependencies": {
     "express": "^4",
@@ -18,6 +18,6 @@
     "nodemon": "^3"
   },
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   }
 }
